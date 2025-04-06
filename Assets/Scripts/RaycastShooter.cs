@@ -3,7 +3,7 @@ using UnityEngine;
 public class RaycastShooter : MonoBehaviour
 {
     public float rayDistance = 100f;
-    public LayerMask raycastLayerMask; // Optional: set to Enemy layer in inspector
+    public LayerMask raycastLayerMask; // Set to Enemy layer in inspector
 
     void Update()
     {
@@ -26,9 +26,11 @@ public class RaycastShooter : MonoBehaviour
             EnemyWander enemy = hit.collider.GetComponent<EnemyWander>();
             if (enemy != null)
             {
-                Destroy(enemy.gameObject); // Or disable with SetActive(false);
+                ScoreManager.Instance.AddScore(5); // Add to score
+                Destroy(enemy.gameObject); // Remove the enemy
             }
         }
     }
 }
+
 
